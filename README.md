@@ -1,5 +1,5 @@
 # DSA_with_cpp
-first coding repository
+Cpp coding repository which includes all major Data structures And Algorithms implemented completely.
 <br>
 <br>
-author : Anubhav YMCA
+author : Anubhav Tyagi
