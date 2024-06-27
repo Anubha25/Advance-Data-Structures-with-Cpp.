@@ -81,7 +81,7 @@ int main()
    node * start=NULL;
    node * end=NULL;
    int n;
-   cout<<"Press 0 to insert at start,1 to insert at specific pos,2 to insert at end,3 to traverse, 4 to delete:";
+   cout<<"Press 0 to insert at start,1 to insert at specific pos,2 to insert at end,3 to traverse:";
    cin>>n;
    while(n!=-1)
    {  if(n==0)
@@ -92,7 +92,7 @@ int main()
          insert_end(start,end);
       else if(n==3)
          traverse(start);
-   cout<<"Press 0 to insert at start,1 to insert at specific pos,2 to insert at end,3 to traverse, 4 to delete:";
+   cout<<"Press 0 to insert at start,1 to insert at specific pos,2 to insert at end,3 to traverse:";
    cin>>n;
    }
 }
