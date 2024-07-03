@@ -82,7 +82,7 @@ queue1.traverse();
 cout<<endl<<queue1.getsize()<<endl;
 queue1.enqueue(7);
 queue1.enqueue(8);
-queue1.enqueue(10);
 queue1.traverse();
+cout<<"size of queue :"<<queue1.getsize();
 }
 
