@@ -2,6 +2,7 @@
 #include<iostream>
 #include<list>
 #include<string>
+#include<unordered_set>
 using namespace std;
 vector<list<int> > graph;
 void addedge(int src, int dest,bool un_dir=true)
@@ -19,12 +20,33 @@ void display()
         cout<<k<<" ";
       cout<<endl;}
 }
-void dfs(){
-
+bool find(int src,int dest,unordered_set<int> &visited){
+    if(src==dest)
+       return true;
+    visited.insert(src);
+    bool result=1;
+    list<int> tmp = graph[src];
+    for(auto i:tmp)
+    {
+        if(visited.find(i)==visited.end())
+        { cout<<"src :"<<src<<" dest : "<<dest<<endl;
+            if(find(i,dest,visited))
+              return true;   }
+    }
+    return false;
 }
-void bfs()
-{
-
+void findpaths(int src, int dest,unordered_set<int> &visited,vector<int> route,vector<vector<int > > &main)
+{  route.push_back(src); visited.insert(src);
+    if(src==dest) {
+      main.push_back(route); visited.erase(src); return; }
+    for(auto i:graph[src])
+    { 
+      if(not visited.count(i))
+      {
+        findpaths(i,dest,visited,route,main);
+      }
+    } 
+  visited.erase(src);
 }
 int main()
 { int v,n;
@@ -34,26 +56,36 @@ bool un_dir;
 cout<<"press 1 for undirected and 0 for directed graph:";
 cin>>un_dir;
 graph.resize(v,list<int> ());
-cout<<"Press 1 to add egde between 2 nodes, 2 to display graph 3 for DFS, 4 for BFS: ";
+cout<<"Press 1 to add egde between 2 nodes, 2 to display graph,Press 4 for all paths from sorce to destination: ";
 cin>>n;
+
 while(n!=0)
-{
+{ int src,dest;  
     if(n==1)
-    { int src,dest;
+    { 
        cout<<"source :";
        cin>>src;
        cout<<"Destination :";
        cin>>dest;
-        addedge(src,dest,un_dir); }
+       addedge(src,dest,un_dir); }
     else if(n==2)
       display();
-    else if(n==3)
-      dfs();
     else if(n==4)
-     bfs();
-
-cout<<"Press 1 to add egde between 2 nodes, 2 to display graph 3 for DFS, 4 for BFS: ";
-cin>>n;
+     { cout<<"Enter source :";
+       cin>>src;
+       cout<<"Enter Destination :";
+       cin>>dest;
+       vector<vector<int > > main;vector<int> route;unordered_set<int> visited;
+       findpaths(src,dest,visited,route,main);
+       for(int i=0;i<main.size();i++)
+        { cout<<endl;
+         for(int j=0;j<main[i].size();j++)
+           cout<<main[i][j]<<" ";   
+        } 
+        cout<<endl;
+      }
+  cout<<"Press 1 to add egde between 2 nodes, 2 to display graph, Press 4 for all paths from sorce to destination: ";
+  cin>>n;
 }
 
 }
