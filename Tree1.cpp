@@ -29,8 +29,8 @@ class tree
 void preorder(Node *root)
 {  if(root==NULL)
        return;
-    preorder(root->left);
     cout<<root->val<<" ";
+    preorder(root->left);
     preorder(root->right);
 }
 void inorder(Node * root)
